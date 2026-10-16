@@ -1,0 +1,24 @@
+# ─── Hand Gesture Recognition — Requirements ───────────────────────────────
+# Install all dependencies with:
+#   pip install -r requirements.txt
+#
+# Python version: 3.9, 3.10, or 3.11 recommended
+# TensorFlow will run on CPU by default (no GPU needed)
+
+# Core deep learning framework
+tensorflow>=2.12.0,<2.16.0      # includes Keras; CPU-only build works fine
+
+# Numerical computing
+numpy>=1.23.0,<2.0.0
+
+# Plotting training curves and confusion matrix
+matplotlib>=3.6.0
+
+# Detailed evaluation metrics (precision, recall, F1)
+scikit-learn>=1.2.0
+
+# Image reading (used by evaluation / utility scripts)
+Pillow>=9.0.0
+
+# Optional: progress bars during training
+tqdm>=4.64.0

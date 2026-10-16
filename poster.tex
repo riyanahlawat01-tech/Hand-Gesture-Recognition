@@ -1,0 +1,392 @@
+\documentclass[final]{beamer}
+
+\usepackage[size=a1,orientation=portrait,scale=1.0]{beamerposter}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{tabularx}
+
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+
+% ─── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{upesblue}{RGB}{0,51,102}
+\definecolor{upeslightblue}{RGB}{204,217,238}
+\definecolor{accentred}{RGB}{180,0,0}
+\definecolor{cardgray}{RGB}{248,250,255}
+\definecolor{textdark}{RGB}{20,20,40}
+\definecolor{gold}{RGB}{255,200,0}
+
+% ─── Beamer theme strip ────────────────────────────────────────────────────────
+\usetheme{default}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+% ─── tcolorbox card style ──────────────────────────────────────────────────────
+\tcbuselibrary{skins,breakable}
+\tcbset{
+  postercard/.style={
+    enhanced,
+    colback=cardgray,
+    colframe=upesblue,
+    colbacktitle=upesblue,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title style={left color=upesblue, right color=upesblue!70!black},
+    boxrule=1pt,
+    arc=3pt,
+    top=4pt, bottom=4pt, left=5pt, right=5pt,
+    toptitle=3pt, bottomtitle=3pt,
+    before upper={\setlength{\parskip}{3pt}},
+  },
+  darkcard/.style={
+    enhanced,
+    colback=upesblue,
+    colframe=upesblue!60!black,
+    colbacktitle=upesblue!70!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    boxrule=1pt,
+    arc=3pt,
+    top=4pt, bottom=4pt, left=5pt, right=5pt,
+    toptitle=3pt, bottomtitle=3pt,
+    before upper={\color{upeslightblue}\setlength{\parskip}{3pt}},
+  }
+}
+
+% ─── Helpers ───────────────────────────────────────────────────────────────────
+\newcommand{\seccard}[2]{%
+  \begin{tcolorbox}[postercard, title={#1}]#2\end{tcolorbox}%
+}
+\newcommand{\darkcard}[2]{%
+  \begin{tcolorbox}[darkcard, title={#1}]#2\end{tcolorbox}%
+}
+
+\newcommand{\hitem}[1]{\item \textbf{\textcolor{upesblue}{#1}}}
+\newcommand{\highlight}[1]{\textbf{\textcolor{accentred}{#1}}}
+
+% font sizes
+\renewcommand{\tiny}{\fontsize{7}{8}\selectfont}
+\renewcommand{\scriptsize}{\fontsize{8}{9.5}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{9}{11}\selectfont}
+\renewcommand{\small}{\fontsize{10}{12}\selectfont}
+\renewcommand{\normalsize}{\fontsize{11}{13.5}\selectfont}
+\renewcommand{\large}{\fontsize{13}{15.5}\selectfont}
+\renewcommand{\Large}{\fontsize{16}{19}\selectfont}
+\renewcommand{\LARGE}{\fontsize{20}{24}\selectfont}
+\renewcommand{\huge}{\fontsize{26}{30}\selectfont}
+\renewcommand{\Huge}{\fontsize{32}{38}\selectfont}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+\begin{frame}[t]{}
+
+%% ── OUTER BORDER ─────────────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=upesblue,
+  boxrule=4pt,
+  arc=0pt,
+  left=10pt, right=10pt, top=10pt, bottom=10pt,
+  width=\textwidth,
+]
+
+%% ── HEADER ───────────────────────────────────────────────────────────────────
+\begin{minipage}[c]{0.18\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{upes_logo.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.78\textwidth}
+  \centering
+  {\Huge\bfseries\textcolor{upesblue}{Hand Gesture Recognition for ASL}}\\[4pt]
+  {\LARGE\bfseries\textcolor{upesblue}{Trained Completely From Scratch --- No Pretrained Models}}\\[6pt]
+  {\large A Custom CNN achieving \highlight{99.24\% Validation Accuracy} on 32 ASL Classes at \highlight{14--18 FPS on CPU}}\\[6pt]
+  {\normalsize
+    \textbf{\textcolor{upesblue}{Riyan Ahlawat}} (590015207)\enspace$\cdot$\enspace
+    \textbf{\textcolor{upesblue}{Shivam Singh Rajawat}} (590015279)\enspace$\cdot$\enspace
+    \textbf{\textcolor{upesblue}{Samarth Jakhmola}} (590018000)\enspace$\cdot$\enspace
+    \textbf{\textcolor{upesblue}{Pratham Bhat}}
+  }\\[2pt]
+  {\small\textit{UPES, Dehradun --- School of Computer Science}}
+\end{minipage}
+
+\vspace{6pt}
+\noindent\textcolor{upesblue}{\rule{\linewidth}{3pt}}
+\vspace{6pt}
+
+%% ── THREE COLUMNS ────────────────────────────────────────────────────────────
+\begin{columns}[T]
+
+%% ══ LEFT COLUMN ══════════════════════════════════════════════════════════════
+\begin{column}{0.30\textwidth}
+
+\seccard{Abstract}{
+\small
+A complete hand gesture recognition system built \textbf{entirely from scratch} using a custom CNN --- no pretrained weights, transfer learning, or external APIs. Recognises \textbf{32 ASL gestures} achieving \highlight{99.24\% best validation accuracy}. Dataset of 12,800 images self-collected via custom webcam pipeline. Runs at \textbf{14--18 FPS on CPU}.\\[4pt]
+\textbf{\textcolor{upesblue}{Keywords:}} CNN\enspace$\cdot$\enspace ASL\enspace$\cdot$\enspace Custom Dataset\enspace$\cdot$\enspace OpenCV\enspace$\cdot$\enspace TensorFlow
+}
+
+\vspace{5pt}
+
+\seccard{Dataset}{
+\begin{center}
+\includegraphics[width=0.92\linewidth,trim=0 100 0 0,clip]{dataset.png}
+\end{center}
+\vspace{2pt}
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \hitem{32 classes:} A--Z + hello, bye, yes, no, thankyou, perfect
+  \hitem{400 images/class:} 200 left + 200 right hand
+  \hitem{12,800 total:} 80\% train / 20\% val
+  \item ROI-box --- only hand region saved, no face
+  \item All images captured by \textbf{Riyan Ahlawat}
+\end{itemize}
+}
+
+\vspace{5pt}
+
+\seccard{Methodology}{
+\scriptsize
+\begin{enumerate}\setlength\itemsep{2pt}
+  \item \textbf{Collect:} ROI webcam script; left + right hand
+  \item \textbf{Preprocess:} Resize 64$\times$64; normalise [0,1]; tf.data
+  \item \textbf{Augment:} Flip, brightness, contrast, hue
+  \item \textbf{Model:} 4 conv blocks 32$\to$64$\to$128$\to$256; GAP; Dense
+  \item \textbf{Train:} Adam + ReduceLROnPlateau + EarlyStopping
+  \item \textbf{Infer:} OpenCV; every 2 frames; top-3 overlay
+\end{enumerate}
+}
+
+\vspace{5pt}
+
+\seccard{Challenges}{
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \hitem{Python 3.14 ---} TF needs $\le$3.12; installed 3.11
+  \hitem{Domain gap ---} black-bg dataset failed; rebuilt from webcam
+  \hitem{GPU on Windows ---} TF $\ge$2.11 no native GPU; used CPU
+  \hitem{Laptop shutdown ---} sleep disabled; charger connected
+  \hitem{Save format ---} .keras incompatible TF2.13; used .h5
+\end{itemize}
+}
+
+\vspace{5pt}
+
+\seccard{Team}{
+\scriptsize
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Member} & \textbf{Role} \\
+\midrule
+Riyan Ahlawat & Data collection, pipeline, training \\
+Shivam Rajawat & CNN architecture, tuning \\
+Samarth Jakhmola & Inference, OpenCV integration \\
+Pratham Bhat & Evaluation, reporting \\
+\bottomrule
+\end{tabular}
+}
+
+\end{column}
+
+%% ══ MIDDLE COLUMN ════════════════════════════════════════════════════════════
+\begin{column}{0.37\textwidth}
+
+\seccard{CNN Architecture}{
+\begin{center}
+\includegraphics[width=0.55\linewidth]{cnn_arch.png}
+\end{center}
+\vspace{2pt}
+\scriptsize\centering
+He Normal init\enspace$\cdot$\enspace L2 reg ($10^{-4}$)\enspace$\cdot$\enspace BatchNorm every layer\enspace$\cdot$\enspace Global Avg Pool\enspace$\cdot$\enspace Dropout 0.5/0.3\enspace$\cdot$\enspace\textbf{664,544 params}
+}
+
+\vspace{5pt}
+
+\seccard{Real-Time Inference --- Live Predictions}{
+\begin{columns}[T]
+  \begin{column}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{gesture_z.png}\\
+    \scriptsize\vspace{2pt}\textcolor{accentred!80!black}{\checkmark}\enspace\textbf{Correct:} Gesture ``Z'' predicted\\at 78.6\% confidence (18 FPS)
+  \end{column}
+  \begin{column}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{gesture_l.png}\\
+    \scriptsize\vspace{2pt}\textbf{$\triangle$}\enspace\textbf{Misclassification:} Sign ``Y''\\predicted as ``L'' (98.2\%)
+  \end{column}
+\end{columns}
+}
+
+\vspace{5pt}
+
+\seccard{Results}{
+\scriptsize
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Best Val Accuracy & \highlight{99.24\%} \\
+Final Val Accuracy & 97.11\% \\
+Final Val Loss & 0.1620 \\
+Best Epoch & 34 / 35 \\
+Train Accuracy & 100\% \\
+Speed (CPU) & 14--18 FPS \\
+Model Size & $\sim$2.5 MB \\
+Parameters & 664,544 \\
+\bottomrule
+\end{tabular}
+\hfill
+\begin{minipage}{0.52\linewidth}
+\raggedright
+35 epochs, batch 32. Best val accuracy \highlight{99.24\%} at epoch 34. EarlyStopping prevented overfitting. Final train accuracy: \textbf{100\%}.
+\end{minipage}
+}
+
+\vspace{5pt}
+
+\seccard{Key Contributions}{
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \item CNN built \textbf{from scratch} --- zero pretrained knowledge
+  \item 12,800 self-collected \textbf{bilateral webcam images}
+  \item Purpose-built \textbf{ROI data collection tool}
+  \item Real-time \textbf{14--18 FPS inference} on CPU
+  \item Domain gap solved by matching train/inference environment
+\end{itemize}
+}
+
+\vspace{5pt}
+
+\seccard{Conclusion}{
+\small
+Custom CNN trained from scratch achieves \highlight{99.24\% best val accuracy} on 32 ASL classes at \textbf{14--18 FPS on CPU}. No pretrained weights or APIs used. Domain gap --- original black-background dataset failing on webcam --- solved by rebuilding dataset in the real environment.\\[3pt]
+\textit{Future: dynamic gestures, mobile deployment.}
+}
+
+\end{column}
+
+%% ══ RIGHT COLUMN ═════════════════════════════════════════════════════════════
+\begin{column}{0.29\textwidth}
+
+\seccard{Hyperparameters}{
+\scriptsize
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Optimizer & Adam ($\eta=0.001$) \\
+Loss & Sparse Cat. Cross-Entropy \\
+Epochs & 35 \\
+Batch Size & 32 \\
+LR Decay & $\times$0.5 (patience 5) \\
+Early Stop & patience 10 \\
+Weight Init & He Normal \\
+L2 Reg & $10^{-4}$ \\
+Dropout & 0.5 / 0.3 \\
+Input & $64\times64\times3$ \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{5pt}
+
+\seccard{Applications}{
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \hitem{Accessibility:} ASL communication for deaf/HoH community
+  \hitem{HCI:} Touchless computer interfaces
+  \hitem{Education:} Interactive ASL learning tools
+  \hitem{Healthcare:} Gesture-based patient communication
+  \hitem{Gaming/AR:} Controller-free immersive input
+\end{itemize}
+}
+
+\vspace{5pt}
+
+\seccard{Training Configuration}{
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \item tf.data pipeline with prefetching
+  \item Data augmentation: random flip, brightness ($\pm$0.2), contrast ($\pm$0.2), hue ($\pm$0.05)
+  \item He Normal weight initialisation
+  \item BatchNorm after every Conv and Dense layer
+  \item Global Average Pooling replaces Flatten to reduce params
+  \item ReduceLROnPlateau: monitor val\_loss, patience 5
+  \item EarlyStopping: monitor val\_accuracy, patience 10
+  \item ModelCheckpoint: saves best .h5 weights
+\end{itemize}
+}
+
+\vspace{5pt}
+
+\seccard{Reproducibility \& Stack}{
+\scriptsize
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Component} & \textbf{Version/Detail} \\
+\midrule
+Framework & TensorFlow 2.13 \\
+Language & Python 3.11 \\
+Inference & OpenCV 4.x \\
+Hardware & CPU only (no GPU) \\
+Model file & .h5 format \\
+Dataset & 12,800 images / 32 classes \\
+\bottomrule
+\end{tabular}\\[4pt]
+No external APIs. Fully CPU-deployable.
+}
+
+\vspace{5pt}
+
+\seccard{Model Architecture Summary}{
+\scriptsize
+\begin{itemize}\setlength\itemsep{2pt}
+  \item \textbf{Conv Block 1:} Conv2D(32) $\to$ BN $\to$ ReLU $\to$ MaxPool $\Rightarrow$ 32$\times$32$\times$32
+  \item \textbf{Conv Block 2:} Conv2D(64) $\to$ BN $\to$ ReLU $\to$ MaxPool $\Rightarrow$ 16$\times$16$\times$64
+  \item \textbf{Conv Block 3:} Conv2D(128) $\to$ BN $\to$ ReLU $\to$ MaxPool $\Rightarrow$ 8$\times$8$\times$128
+  \item \textbf{Conv Block 4:} Conv2D(256) $\to$ BN $\to$ ReLU $\to$ MaxPool $\Rightarrow$ 4$\times$4$\times$256
+  \item \textbf{GAP} $\Rightarrow$ (256,)
+  \item \textbf{Dense(512)} + BN + ReLU + Dropout(0.5)
+  \item \textbf{Dense(256)} + BN + ReLU + Dropout(0.3)
+  \item \textbf{Dense(32)} + Softmax $\Rightarrow$ Output
+\end{itemize}
+\vspace{2pt}
+Total params: \textbf{664,544} \enspace|\enspace Size: $\sim$\textbf{2.5 MB}
+}
+
+\end{column}
+\end{columns}
+
+%% ── FOOTER ───────────────────────────────────────────────────────────────────
+\vspace{8pt}
+\noindent\textcolor{upesblue}{\rule{\linewidth}{2pt}}
+\vspace{5pt}
+
+\begin{columns}[T]
+\begin{column}{0.32\textwidth}
+\darkcard{Training History}{
+\small 35 epochs $\cdot$ Batch 32 $\cdot$ Adam with ReduceLROnPlateau. Best val accuracy \textbf{\textcolor{gold}{99.24\%}} at epoch 34. EarlyStopping active. Train accuracy: \textbf{\textcolor{gold}{100\%}}.
+}
+\end{column}
+\begin{column}{0.32\textwidth}
+\darkcard{Architecture at a Glance}{
+\small 4 Conv Blocks (32$\to$64$\to$128$\to$256) + GAP + Dense(512) + Dense(256) + Softmax(32). Total: \textbf{\textcolor{gold}{664,544 params}}. Model: $\sim$\textbf{\textcolor{gold}{2.5 MB}}. Input: $64\times64\times3$.
+}
+\end{column}
+\begin{column}{0.32\textwidth}
+\darkcard{Impact \& Future Work}{
+\small Zero pretrained knowledge. Real-time CPU inference at 14--18 FPS. Domain gap solved. Future: \textbf{\textcolor{gold}{dynamic gestures}}, \textbf{\textcolor{gold}{mobile deployment}}, larger ASL vocabulary.
+}
+\end{column}
+\end{columns}
+
+\end{tcolorbox}
+\end{frame}
+\end{document}
